@@ -17,12 +17,28 @@ module.exports = function(grunt) {
                 }
             }
         },
+        requirejs: {
+            compile: {
+                options: {
+                    baseUrl: "js",
+                    mainConfigFile: "js/app.js",
+                    out: "js/dist/app.built.js"
+                }
+            }
+        },
         watch: {
-            files: ["css/*.less", "css/*/*.less"],
-            tasks: ["less", "cssmin"]
+            less: {
+                files: ["css/*.less", "css/*/*.less"],
+                tasks: ["less", "cssmin"]
+            },
+            requirejs: {
+                files: "js/*.js",
+                tasks: 'requirejs'
+            }
         }
     });
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-less');
+    grunt.loadNpmTasks('grunt-contrib-requirejs');
     grunt.loadNpmTasks('grunt-contrib-watch');
 };

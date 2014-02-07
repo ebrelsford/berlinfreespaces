@@ -1,6 +1,11 @@
 module.exports = function(grunt) {
     grunt.initConfig({
-        // running `grunt less` will compile once
+        cssmin: {
+            minify: {
+                src: 'css/style.css',
+                dest: 'css/style.min.css'
+            }
+        },
         less: {
             development: {
                 options: {
@@ -12,12 +17,12 @@ module.exports = function(grunt) {
                 }
             }
         },
-        // running `grunt watch` will watch for changes
         watch: {
             files: ["css/*.less", "css/*/*.less"],
-            tasks: ["less"]
+            tasks: ["less", "cssmin"]
         }
     });
+    grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-contrib-watch');
 };

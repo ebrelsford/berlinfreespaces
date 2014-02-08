@@ -8,7 +8,7 @@ requirejs.config({
     },
     include: ['main'],
     insertRequire: ['main'],
-    optimize: "none",
+    optimize: "uglify2",
     shim: {
         "handlebars": {
             "exports": "Handlebars"

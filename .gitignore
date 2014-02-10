@@ -1,3 +1,4 @@
 .*.swp
+build
 js/bower_components
 node_modules

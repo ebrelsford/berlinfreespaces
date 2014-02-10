@@ -3,9 +3,10 @@ module.exports = function(grunt) {
         cssmin: {
             minify: {
                 src: 'css/style.css',
-                dest: 'css/style.min.css'
+                dest: 'build/css/style.min.css'
             }
         },
+
         less: {
             development: {
                 options: {
@@ -17,6 +18,7 @@ module.exports = function(grunt) {
                 }
             }
         },
+
         requirejs: {
             compile: {
                 options: {
@@ -26,19 +28,66 @@ module.exports = function(grunt) {
                 }
             }
         },
+
+        clean: {
+            build: {
+                src: ['build']
+            }
+        },
+
+        copy: {
+            build: {
+                files: [
+                    {
+                        src: '**/*.built.js',
+                        dest: 'build/',
+                        expand: true
+                    },
+                    {
+                        src: '**/*.min.css',
+                        dest: 'build/',
+                        expand: true
+                    },
+                    {
+                        src: 'img/*',
+                        dest: 'build/',
+                        expand: true
+                    },
+                    {
+                        src: 'index.html',
+                        dest: 'build/'
+                    }
+                ]
+            }
+        },
+
+        shell: {
+            publish: {
+                command: 'scp -r build/* wf:~/webapps/berlin'
+            }
+        },
+
         watch: {
             less: {
                 files: ["css/*.less", "css/*/*.less"],
-                tasks: ["less", "cssmin"]
+                tasks: ["less"]
             },
             requirejs: {
+                // TODO don't uglify during dev, only when building
                 files: "js/*.js",
                 tasks: 'requirejs'
             }
         }
     });
+
+    grunt.loadNpmTasks('grunt-contrib-clean');
+    grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-contrib-requirejs');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-shell');
+
+    grunt.registerTask('build', ['clean:build', 'copy:build']);
+    grunt.registerTask('publish', 'shell:publish')
 };

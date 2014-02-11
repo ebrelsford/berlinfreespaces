@@ -1,20 +1,14 @@
-/*
- * reset
- */
-
-* {
-    border: 0;
-    margin: 0;
-    padding: 0;
-}
-    
-body {
-    background-color: white;
-    font-family: Helvetica;
-}
+@import "../js/bower_components/bootstrap/less/bootstrap.less";
 
 ul {
     list-style: none;
+}
+
+h1 {
+    font-size: 32px;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
 }
 
 a {
@@ -28,30 +22,16 @@ a:hover {
     border-bottom: 1px dashed #F04848 !important;
 }
 
-
-/*
- * layout
- */
-
-.grid {
-    box-sizing: padding-box;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    width: 100%;
-    float: left;
+body {
+    .make-row(0);
 }
 
-@media (min-width: 768px) {
-    .grid-1-4 {
-        width: 25%;
-    }
-    .grid-3-4 {
-        width: 75%;
-    }
+.left {
+    .make-sm-column(9; 0);
 }
 
-.clear {
-    clear: both;
+.right {
+    .make-sm-column(3; 0);
 }
 
 
@@ -104,6 +84,8 @@ a:hover {
 .filters label {
     border-bottom: 1px solid white;
     cursor: pointer;
+    font-weight: normal;
+    margin-bottom: 0;
     margin-left: 5px;
 }
 

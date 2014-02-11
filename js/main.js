@@ -1,5 +1,5 @@
 define(
-    ['handlebars', 'filters', 'jquery', 'leaflet', 'underscore'],
+    ['handlebars', 'filters', 'jquery', 'leaflet', 'underscore', 'bootstrap'],
     function (Handlebars, mapFilters, $, L, _) {
 
         (function (window, $, undefined) {

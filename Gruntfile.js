@@ -3,7 +3,7 @@ module.exports = function(grunt) {
         cssmin: {
             minify: {
                 src: 'css/style.css',
-                dest: 'build/css/style.min.css'
+                dest: 'css/style.min.css'
             }
         },
 
@@ -70,7 +70,7 @@ module.exports = function(grunt) {
         watch: {
             less: {
                 files: ["css/*.less", "css/*/*.less"],
-                tasks: ["less"]
+                tasks: ["less", "cssmin"]
             },
             requirejs: {
                 // TODO don't uglify during dev, only when building

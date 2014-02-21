@@ -38,6 +38,7 @@ define(
                 },
 
                 allFilters: mapFilters,
+                sortedFeaturs: null,
 
                 currentFilters: [],
 
@@ -52,6 +53,21 @@ define(
                     instance._initializeFilters();
 
                     return true;
+                },
+
+                renderSquatList: function(search) {
+                    var source = $('#list-template').html(),
+                        template = Handlebars.compile(source),
+                        instance = this,
+                        features = instance.sortedFeatures;
+                    if (search && search !== '') {
+                        features = _.filter(features, function (f) {
+                            return f.properties.name_of_space.indexOf(search) >= 0;
+                        });
+                    }
+                    $('#list').html(template({
+                        places: features,
+                    }));
                 },
 
                 _initializeMap: function() {
@@ -99,15 +115,10 @@ define(
 
                         }).addTo(instance.map);
 
-                        var sortedFeatures = _.sortBy(data.features, function(f) {
+                        instance.sortedFeatures = _.sortBy(data.features, function(f) {
                             return f.properties.name_of_space;
                         });
-
-                        var source = $('#list-template').html();
-                        var template = Handlebars.compile(source);
-                        $('#list').html(template({
-                            places: sortedFeatures,
-                        }));
+                        instance.renderSquatList();
 
                         $('.list-place a').click(function(e) {
                             e.preventDefault();
@@ -279,7 +290,7 @@ define(
         });
 
         $(document).ready(function() {
-            $('#map').freespacemap({
+            var freespacemap = $('#map').freespacemap({
                 filters: $('.filters'),
             });
 
@@ -290,6 +301,14 @@ define(
             $('.filters input').change(onFilterChange);
 
             $('#grow').change(onFilterChange);
+
+
+            /*
+             * Search
+             */
+            $('#search :input').keyup(function () {
+                $('#map').freespacemap('renderSquatList', $(this).val());
+            });
 
 
             /*

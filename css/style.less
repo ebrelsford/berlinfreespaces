@@ -1,7 +1,22 @@
 @import "../js/bower_components/bootstrap/less/bootstrap.less";
 
+html,
+body {
+    height: 100%;
+    overflow: hidden;
+}
+
 ul {
     list-style: none;
+}
+
+header {
+    height: 8%;
+}
+
+article {
+    height: 92%;
+    .make-row(0);
 }
 
 h1 {
@@ -22,16 +37,26 @@ a:hover {
     border-bottom: 1px dashed #F04848 !important;
 }
 
-body {
-    .make-row(0);
-}
-
 .left {
     .make-sm-column(9; 0);
+    height: 100%;
 }
 
 .right {
     .make-sm-column(3; 0);
+    height: 100%;
+}
+
+.tab-content {
+    max-height: 95%;
+    overflow: auto;
+    padding-left: 2%;
+    padding-bottom: 5%;
+    padding-top: 5%;
+
+    ul {
+        padding: 0;
+    }
 }
 
 
@@ -40,7 +65,7 @@ body {
  */
 
 #map {
-    height: 500px;
+    height: 100%;
     width: 100%;
 }
 
@@ -54,7 +79,6 @@ body {
 }
 
 .filters {
-    float: left;
     padding-left: 5px;
 }
 

@@ -68,21 +68,33 @@
     </head>
 
     <body>
-        <div id="header">
+        <header>
             <h1>Berlin Freiräume</h1>
-        </div>
+        </header>
 
-        <div class="left">
-            <div id="map"></div>
-            <div id="list"></div>
-        </div>
-        <div class="right">
-            <div class="filter-actions">
-                <a href="#" id="filters-all-on">all on</a> / <a href="#" id="filters-all-off">all off</a><br />
-                <input id="grow" name="grow" type="checkbox" /><label for="grow">grow dots by category</label>
+        <article>
+            <div class="left">
+                <div id="map"></div>
             </div>
-            <ul class="filters"></ul>
-        </div>
+            <div class="right">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#home" data-toggle="tab">Home</a></li>
+                    <li><a href="#squat-list" data-toggle="tab">List</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="home">
+                        <div class="filter-actions">
+                            <a href="#" id="filters-all-on">all on</a> / <a href="#" id="filters-all-off">all off</a><br />
+                            <input id="grow" name="grow" type="checkbox" /><label for="grow">grow dots by category</label>
+                        </div>
+                        <ul class="filters"></ul>
+                    </div>
+                    <div class="tab-pane" id="squat-list">
+                        <div id="list"></div>
+                    </div>
+                </div>
+            </div>
+        <article>
     </body>
 
     <script src="js/dist/app.built.js"></script>

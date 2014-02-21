@@ -5617,8 +5617,8 @@ button.close {
 .panel-body:after,
 .modal-footer:before,
 .modal-footer:after,
-body:before,
-body:after {
+article:before,
+article:after {
   content: " ";
   display: table;
 }
@@ -5636,7 +5636,7 @@ body:after {
 .pager:after,
 .panel-body:after,
 .modal-footer:after,
-body:after {
+article:after {
   clear: both;
 }
 .center-block {
@@ -5821,8 +5821,21 @@ td.visible-print {
     display: none !important;
   }
 }
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+}
 ul {
   list-style: none;
+}
+header {
+  height: 8%;
+}
+article {
+  height: 92%;
+  margin-left: 0;
+  margin-right: 0;
 }
 h1 {
   font-size: 32px;
@@ -5839,15 +5852,12 @@ a:hover {
   color: #F04848 !important;
   border-bottom: 1px dashed #F04848 !important;
 }
-body {
-  margin-left: 0;
-  margin-right: 0;
-}
 .left {
   position: relative;
   min-height: 1px;
   padding-left: 0;
   padding-right: 0;
+  height: 100%;
 }
 @media (min-width: 768px) {
   .left {
@@ -5860,6 +5870,7 @@ body {
   min-height: 1px;
   padding-left: 0;
   padding-right: 0;
+  height: 100%;
 }
 @media (min-width: 768px) {
   .right {
@@ -5867,11 +5878,21 @@ body {
     width: 25%;
   }
 }
+.tab-content {
+  max-height: 95%;
+  overflow: auto;
+  padding-left: 2%;
+  padding-bottom: 5%;
+  padding-top: 5%;
+}
+.tab-content ul {
+  padding: 0;
+}
 /*
  * content
  */
 #map {
-  height: 500px;
+  height: 100%;
   width: 100%;
 }
 .filter-actions {
@@ -5882,7 +5903,6 @@ body {
   margin-left: 5px;
 }
 .filters {
-  float: left;
   padding-left: 5px;
 }
 @media (max-width: 768px) {

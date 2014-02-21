@@ -45,6 +45,11 @@
         <script id="popup-template" type="text/x-handlebars-template">
             <div class="place-popup-content">
                 <h2>{{place.properties.name_of_space}}</h2>
+
+                {{#if place.properties.address}}
+                <p>{{place.properties.address}}</p>
+                {{/if}}
+
                 {{#if place.properties.website}}
                 <a href="{{place.properties.website}}" target="_blank">website</a>
                 {{/if}}

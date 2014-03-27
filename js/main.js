@@ -68,6 +68,18 @@ define(
                     $('#list').html(template({
                         places: features,
                     }));
+
+                    $('.list-place a').click(function(e) {
+                        e.preventDefault();
+                        var clicked_id = $(this).data('cartodbid');
+                        var clicked_layer = _.find(instance.map._layers, function(layer) {
+                            if (!layer.feature) return false;
+                            return layer.feature.properties.cartodb_id === clicked_id;
+                        });
+
+                        clicked_layer.fire('click');
+                        return false;
+                    });
                 },
 
                 _initializeMap: function() {
@@ -119,18 +131,6 @@ define(
                             return f.properties.name_of_space;
                         });
                         instance.renderSquatList();
-
-                        $('.list-place a').click(function(e) {
-                            e.preventDefault();
-                            var clicked_id = $(this).data('cartodbid');
-                            var clicked_layer = _.find(instance.map._layers, function(layer) {
-                                if (!layer.feature) return false;
-                                return layer.feature.properties.cartodb_id === clicked_id;
-                            });
-
-                            clicked_layer.fire('click');
-                            return false;
-                        });
                     });
 
                 },

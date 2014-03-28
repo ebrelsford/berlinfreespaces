@@ -1,5 +1,14 @@
 define(
-    ['handlebars', 'filters', 'jquery', 'leaflet', 'underscore', 'bootstrap'],
+    [
+        'handlebars',
+        'filters',
+        'jquery',
+        'leaflet',
+        'underscore',
+
+        'bootstrap',
+        'jquery.form'
+    ],
     function (Handlebars, mapFilters, $, L, _) {
 
         (function (window, $, undefined) {
@@ -82,6 +91,16 @@ define(
                     });
                 },
 
+                renderAddSquatFilters: function () {
+                    // build the form
+                    var source = $('#add-filters-template').html(),
+                        template = Handlebars.compile(source),
+                        instance = this;
+                    $('.form-filters').html(template({
+                        filters: instance.allFilters
+                    }));
+                },
+
                 _initializeMap: function() {
                     var instance = this;
 
@@ -98,7 +117,7 @@ define(
                         maxZoom: 18,
                     }).addTo(instance.map);
 
-                    $.getJSON('http://newagebeverages.cartodb.com/api/v2/sql?format=GeoJSON&q=SELECT * FROM potentialities_map_v3', function(data) {
+                    $.getJSON('http://newagebeverages.cartodb.com/api/v2/sql?format=GeoJSON&q=SELECT * FROM potentialities_map_v3 WHERE needs_moderation IS NULL or needs_moderation = false', function(data) {
                         L.geoJson(data, {
 
                             onEachFeature: function(featureData, layer) {
@@ -387,6 +406,25 @@ define(
                     onFilterChange();
                 });
 
+                return false;
+            });
+
+
+            /*
+             * Add form
+             */
+            $('a[href="#squat-add"]').on('show.bs.tab', function () {
+                $('#map').freespacemap('renderAddSquatFilters');
+            });
+
+            $('#squat-add form').submit(function () {
+                $(this).find(':input[type=submit]').prop('disabled', true);
+                $(this).ajaxSubmit({
+                    success: function () {
+                        $('.squat-add-success').show();
+                        $('.squat-add-form-wrapper').hide();
+                    }
+                });
                 return false;
             });
 

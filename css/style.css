@@ -5942,6 +5942,22 @@ a:hover {
   border: 1px solid black;
   width: 100%;
 }
+.form-horizontal {
+  padding: 15px;
+}
+.form-horizontal .form-group {
+  margin: 0;
+}
+.form-horizontal input[type="text"] {
+  width: 100%;
+}
+.form-horizontal .form-filters-group h2 {
+  font-size: 22px;
+  margin-bottom: 2px;
+}
+.squat-add-success {
+  display: none;
+}
 .leaflet-popup-content .place-popup-content img.place-image {
   max-height: 500px !important;
   max-width: 300px !important;

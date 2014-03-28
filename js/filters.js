@@ -23,7 +23,7 @@ define([], function () {
             items: [
                 {
                     display: 'hackerspace/hacking events',
-                    databaseField: 'hackerspace_hacker_meetup',
+                    databaseField: 'hackerspace_tech_meetup',
                 },
                 {
                     display: 'medienwerkstatt',
@@ -186,12 +186,12 @@ define([], function () {
                     databaseField: 'child_friendly',
                 },
                 {
-                    display: 'women/trans/queer focus',
-                    databaseField: 'women_trans_queer_focus',
+                    display: 'women/trans/queer space/events',
+                    databaseField: 'women_trans_queer_space_events',
                 },
                 {
                     display: 'immigrant initiatives/events',
-                    databaseField: 'immigrant_initiatives',
+                    databaseField: 'immigrant_initiatives_events',
                 },
             ],
         },
